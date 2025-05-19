@@ -27,7 +27,9 @@ jobs:
         run: echo "DATE=$(date +'%F')" >> $GITHUB_ENV
 
       - name: what???
-        run: pwd
+        run: |
+          pwd
+          ls -la
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
