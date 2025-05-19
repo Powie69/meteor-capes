@@ -1,0 +1,58 @@
+name: Download Capes
+
+on:
+  schedule:
+    # This runs every Sunday at midnight UTC.
+    - cron: '0 0 * * 0'
+  workflow_dispatch:
+
+jobs:
+  download-capes:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Run script
+        run: node .
+
+      - name: Set DATE env var
+        shell: bash
+        run: echo "DATE=$(date +'%F')" >> $GITHUB_ENV
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: meteor-capes
+          path: "Capes → ${{ env.DATE }}"
+
+      - name: Create and push tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="${{ env.DATE }}"
+          echo "🪧 Creating tag: $TAG"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag $TAG
+          git push origin $TAG
+
+      - name: Zip capes folder
+        run: |
+          zip -r "capes-${{ env.DATE }}.zip" "Capes → ${{ env.DATE }}"
+
+      - name: Create GitHub Release with asset
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.DATE }}
+          name: "Capes 🠚 ${{ env.DATE }}"
+          files: capes-${{ env.DATE }}.zip
+          make-latest: "true"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

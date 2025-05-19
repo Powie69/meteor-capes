@@ -1,0 +1,19 @@
+{
+  "name": "meteor-cape-downloader",
+  "version": "0.1.0",
+  "description": "Donwloads capes from meteorclient.com",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Powie69/meteor-capes.git"
+  },
+  "author": "Powie69",
+  "bugs": {
+    "url": "https://github.com/Powie69/meteor-capes/issues"
+  },
+  "homepage": "https://github.com/Powie69/meteor-capes#readme"
+}
