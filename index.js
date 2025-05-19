@@ -8,9 +8,7 @@ if (response.status >= 400) {
 	throw new Error(`Error fetching cape list: ${response}`);
 }
 
-const data = await response.text();
-
-const links = data.split('\n')
+const links = (await response.text()).split('\n')
 	.filter(line => line.trim())
 	.map(line => line.split(' ')[1]);
 
@@ -42,7 +40,7 @@ for (const link of links) {
 	try {
 		const fileStream = fs.createWriteStream(outputPath);
 		await pipeline(response.body, fileStream);
-	} catch (err) {
+	} catch (err) { // ik I'm catching it just to rethrow it, but i want the error message thing.
 		throw new Error(`Error writing file ${filename}:`, err);
 	}
 
@@ -50,4 +48,4 @@ for (const link of links) {
 	index++;
 }
 
-console.log(`>All capes downloaded successfully!\n> ${index} out of ${links.length} capes downloaded (${((index / links.length) * 100).toFixed(2)}%)`);
+console.log(`>All valid capes downloaded successfully!\n> ${index} out of ${links.length} are valid for download. (${((index / links.length) * 100).toFixed(2)}%)`);
