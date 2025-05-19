@@ -26,7 +26,7 @@ jobs:
         shell: bash
         run: echo "DATE=$(date +'%F')" >> $GITHUB_ENV
 
-      - name: what???
+      - name: sanity check
         run: |
           pwd
           ls -la
@@ -37,17 +37,6 @@ jobs:
         with:
           name: meteor-capes
           path: "Capes - ${{ env.DATE }}"
-
-      - name: Create and push tag
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          TAG="${{ env.DATE }}"
-          echo "🪧 Creating tag: $TAG"
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git tag $TAG
-          git push origin $TAG
 
       - name: Zip capes folder
         run: |
