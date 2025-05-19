@@ -50,4 +50,4 @@ for (const link of links) {
 	index++;
 }
 
-console.log(`All capes downloaded successfully!\n ${index} out of ${links.length} capes downloaded (${((index / links.length) * 100).toFixed(2)}%)`);
+console.log(`>All capes downloaded successfully!\n> ${index} out of ${links.length} capes downloaded (${((index / links.length) * 100).toFixed(2)}%)`);
