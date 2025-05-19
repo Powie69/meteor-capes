@@ -30,12 +30,13 @@ jobs:
         run: |
           pwd
           ls -la
+          echo "DATE: ${{ env.DATE }}"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: meteor-capes
-          path: "Capes → ${{ env.DATE }}"
+          path: "Capes - ${{ env.DATE }}"
 
       - name: Create and push tag
         env:
@@ -50,7 +51,7 @@ jobs:
 
       - name: Zip capes folder
         run: |
-          zip -r "capes-${{ env.DATE }}.zip" "Capes → ${{ env.DATE }}"
+          zip -r "capes-${{ env.DATE }}.zip" "Capes - ${{ env.DATE }}"
 
       - name: Create GitHub Release with asset
         uses: softprops/action-gh-release@v2

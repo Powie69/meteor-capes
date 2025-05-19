@@ -14,7 +14,7 @@ const links = data.split('\n')
 	.filter(line => line.trim())
 	.map(line => line.split(' ')[1]);
 
-const outputDir = `Capes 🠚 ${new Date().toISOString().slice(0, 10)}`;
+const outputDir = `Capes - ${new Date().toISOString().slice(0, 10)}`;
 if (!fs.existsSync(outputDir)) {
 	fs.mkdirSync(outputDir);
 }
