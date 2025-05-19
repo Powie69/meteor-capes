@@ -29,12 +29,6 @@ jobs:
         shell: bash
         run: echo "DATE=$(date +'%F')" >> $GITHUB_ENV
 
-      - name: sanity check
-        run: |
-          pwd
-          ls -la
-          echo "DATE: ${{ env.DATE }}"
-
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
