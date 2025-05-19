@@ -26,6 +26,9 @@ jobs:
         shell: bash
         run: echo "DATE=$(date +'%F')" >> $GITHUB_ENV
 
+      - name: what???
+        run: pwd
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
@@ -40,7 +43,6 @@ jobs:
           echo "🪧 Creating tag: $TAG"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}"
           git tag $TAG
           git push origin $TAG
 
