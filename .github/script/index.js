@@ -11,7 +11,7 @@ const links = (await response.text())
 	.filter(l => l.trim())
 	.map(l => l.split(' ')[1]);
 
-const outputDir = `Capes → ${new Date().toISOString().slice(0, 10)}`;
+const outputDir = `Capes - ${new Date().toISOString().slice(0, 10)}`;
 if (!fs.existsSync(outputDir)) {
 	fs.mkdirSync(outputDir);
 }
