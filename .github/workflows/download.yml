@@ -22,6 +22,9 @@ jobs:
         with:
           node-version: '22'
 
+      - name: Change to script directory
+        run: cd .github/script
+
       - name: Run script
         run: node .
 
@@ -56,6 +59,6 @@ jobs:
           tag_name: ${{ env.DATE }}
           name: "Capes 🠚 ${{ env.DATE }}"
           files: capes-${{ env.DATE }}.zip
-          make-latest: "true"
+          make_latest: "true"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

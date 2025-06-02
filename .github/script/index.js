@@ -4,15 +4,14 @@ import { pipeline } from 'stream/promises';
 
 const response = await fetch('https://meteorclient.com/api/capes');
 
-if (response.status >= 400) {
-	throw new Error(`Error fetching cape list: ${response}`);
-}
+if (response.status >= 400) throw new Error(`Error fetching cape list: ${response}`);
 
-const links = (await response.text()).split('\n')
-	.filter(line => line.trim())
-	.map(line => line.split(' ')[1]);
+const links = (await response.text())
+	.split('\n')
+	.filter(l => l.trim())
+	.map(l => l.split(' ')[1]);
 
-const outputDir = `Capes - ${new Date().toISOString().slice(0, 10)}`;
+const outputDir = `Capes → ${new Date().toISOString().slice(0, 10)}`;
 if (!fs.existsSync(outputDir)) {
 	fs.mkdirSync(outputDir);
 }
@@ -30,16 +29,13 @@ for (const link of links) {
 		throw new Error(`${link} \n Error fetching cape: ${response}`);
 	}
 
-	if (response.headers.get("content-type") !== 'image/png') {
-		throw new Error(`wtf??? ${link} \n ${response.headers['content-type']}`);
-	}
+	if (response.headers.get("content-type") !== 'image/png') throw new Error(`wtf??? ${link}\n${response.headers['content-type']}`);
 
 	const filename = `[${index}] - ${path.basename(link)}`;
 	const outputPath = path.join(outputDir, filename);
 
 	try {
-		const fileStream = fs.createWriteStream(outputPath);
-		await pipeline(response.body, fileStream);
+		await pipeline(response.body, fs.createWriteStream(outputPath));
 	} catch (err) { // ik I'm catching it just to rethrow it, but i want the error message thing.
 		throw new Error(`Error writing file ${filename}:`, err);
 	}
