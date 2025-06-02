@@ -13,6 +13,10 @@ jobs:
   download-capes:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: ./.github/script
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -21,9 +25,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-
-      - name: Change to script directory
-        run: cd .github/script
 
       - name: Run script
         run: node .
