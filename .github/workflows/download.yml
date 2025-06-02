@@ -13,10 +13,6 @@ jobs:
   download-capes:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: ./.github/script
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -27,6 +23,7 @@ jobs:
           node-version: '22'
 
       - name: Run script
+        working-directory: ./.github/script
         run: node .
 
       - name: Set DATE env var
@@ -35,7 +32,6 @@ jobs:
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
-        working-directory: ./.github/script
         with:
           name: meteor-capes
           path: "Capes → ${{ env.DATE }}"
@@ -52,15 +48,15 @@ jobs:
           git push origin $TAG
 
       - name: Zip capes folder
+        working-directory: ./.github/script
         run: zip -r "Capes → ${{ env.DATE }}.zip" "Capes → ${{ env.DATE }}"
 
       - name: Create GitHub Release with asset
         uses: softprops/action-gh-release@v2
-        working-directory: ./.github/script
         with:
           tag_name: ${{ env.DATE }}
           name: "Capes → ${{ env.DATE }}"
-          files: "Capes → ${{ env.DATE }}.zip"
+          files: "./.github/script/Capes → ${{ env.DATE }}.zip"
           make_latest: "true"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
