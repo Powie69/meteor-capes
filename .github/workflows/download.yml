@@ -52,7 +52,7 @@ jobs:
 
       - name: Zip capes folder
         run: |
-          zip -r "capes-${{ env.DATE }}.zip" "Capes - ${{ env.DATE }}"
+          zip -r "capes → ${{ env.DATE }}.zip" "Capes → ${{ env.DATE }}"
 
       - name: Create GitHub Release with asset
         uses: softprops/action-gh-release@v2
