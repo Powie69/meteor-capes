@@ -57,8 +57,8 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ env.DATE }}
-          name: "Capes 🠚 ${{ env.DATE }}"
-          files: "Capes 🠚 ${{ env.DATE }}.zip"
+          name: "Capes → ${{ env.DATE }}"
+          files: "Capes → ${{ env.DATE }}.zip"
           make_latest: "true"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
