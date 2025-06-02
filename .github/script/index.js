@@ -11,7 +11,7 @@ const links = (await response.text())
 	.filter(l => l.trim())
 	.map(l => l.split(' ')[1]);
 
-const outputDir = `Capes - ${new Date().toISOString().slice(0, 10)}`;
+const outputDir = `Capes → ${new Date().toISOString().slice(0, 10)}`;
 if (!fs.existsSync(outputDir)) {
 	fs.mkdirSync(outputDir);
 }
@@ -31,7 +31,7 @@ for (const link of links) {
 
 	if (response.headers.get("content-type") !== 'image/png') throw new Error(`wtf??? ${link}\n${response.headers['content-type']}`);
 
-	const filename = `[${index}] - ${path.basename(link)}`;
+	const filename = `[${index}] → ${path.basename(link)}`;
 	const outputPath = path.join(outputDir, filename);
 
 	try {
