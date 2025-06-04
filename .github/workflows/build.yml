@@ -1,0 +1,39 @@
+name: Build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:  # Allows manual triggering of the workflow
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build and Upload Artifact
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.24'
+          cache: true
+
+      - name: Get dependencies
+        run: go mod download
+
+      - name: Build
+        run: |
+          GOOS=linux GOARCH=amd64 go build -v -o bin/app-linux-amd64
+          GOOS=windows GOARCH=amd64 go build -v -o bin/app-windows-amd64.exe
+          GOOS=darwin GOARCH=amd64 go build -v -o bin/app-darwin-amd64
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: go-binaries
+          path: bin/

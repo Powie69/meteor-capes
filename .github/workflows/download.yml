@@ -56,7 +56,7 @@ jobs:
         with:
           tag_name: ${{ env.DATE }}
           name: "Capes → ${{ env.DATE }}"
-          files: "./.github/script/Capes - ${{ env.DATE }}.zip"
+          files: "./.github/script/Capes-${{ env.DATE }}.zip"
           make_latest: "true"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
