@@ -50,14 +50,14 @@ jobs:
 
       - name: Zip capes folder
         working-directory: ./.github/script
-        run: zip -r "Capes - ${{ env.DATE }}.zip" "Capes → ${{ env.DATE }}"
+        run: zip -r "Capes_${{ env.DATE }}.zip" "Capes → ${{ env.DATE }}"
 
       - name: Create GitHub Release with asset
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ env.DATE }}
           name: "Capes → ${{ env.DATE }}"
-          files: "./.github/script/Capes - ${{ env.DATE }}.zip"
+          files: "./.github/script/Capes_${{ env.DATE }}.zip"
           make_latest: "true"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
