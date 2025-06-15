@@ -47,9 +47,9 @@ func main() {
 		}
 	}
 
-	index := 0
+	downloadIndex := 0
 
-	for _, link := range links {
+	for index, link := range links {
 		resp, err := http.Get(link)
 		if err != nil {
 			panic(fmt.Sprintf("Error fetching cape %s: %v", link, err))
@@ -58,7 +58,7 @@ func main() {
 
 		if resp.StatusCode >= 400 {
 			if resp.StatusCode == 404 {
-				fmt.Printf("Cape not found: %s\n", link)
+				fmt.Printf("[%d] Cape not found: %s\n", index, link)
 				continue
 			}
 			panic(fmt.Sprintf("%s \n Error fetching cape: %s", link, resp.Status))
@@ -69,7 +69,7 @@ func main() {
 			panic(fmt.Sprintf("wtf??? %s\n%s", link, contentType))
 		}
 
-		filename := fmt.Sprintf("[%d] → %s", index, filepath.Base(link))
+		filename := fmt.Sprintf("[%d] → %s", downloadIndex, filepath.Base(link))
 		outputPath := filepath.Join(outputDir, filename)
 
 		outFile, err := os.Create(outputPath)
@@ -83,11 +83,13 @@ func main() {
 			panic(fmt.Sprintf("Error writing file %s: %v", filename, err))
 		}
 
-		fmt.Printf("Downloaded cape: %s\n", link)
-		index++
+		fmt.Printf("[%d] Downloaded cape: %s\n", index, link)
+		downloadIndex++
 	}
 
-	percentage := float64(index) / float64(len(links)) * 100
-	fmt.Printf(">All valid capes downloaded successfully!\n> %d out of %d are valid for download. (%.2f%%)\n",
-		index, len(links), percentage)
+	fmt.Printf("> All valid capes downloaded successfully!\n> %d out of %d are valid for download. (%.2f%%)\n",
+		downloadIndex, len(links), float64(downloadIndex)/float64(len(links))*100)
+
+	fmt.Println("Press Enter to exit...")
+	fmt.Scanln()
 }

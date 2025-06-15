@@ -28,9 +28,9 @@ jobs:
 
       - name: Build
         run: |
-          GOOS=linux GOARCH=amd64 go build -v -o bin/app-linux-amd64
-          GOOS=windows GOARCH=amd64 go build -v -o bin/app-windows-amd64.exe
-          GOOS=darwin GOARCH=amd64 go build -v -o bin/app-darwin-amd64
+          GOOS=linux GOARCH=amd64 go build -v -o bin/meteor-capes_linux-amd64
+          GOOS=windows GOARCH=amd64 go build -v -o bin/meteor-capes_windows-amd64.exe
+          GOOS=darwin GOARCH=amd64 go build -v -o bin/meteor-capes_darwin-amd64
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
