@@ -4,9 +4,7 @@
 [![Download Capes](https://github.com/Powie69/meteor-capes/actions/workflows/download.yml/badge.svg)](https://github.com/Powie69/meteor-capes/actions/workflows/download.yml)
 [![Build](https://github.com/Powie69/meteor-capes/actions/workflows/build.yml/badge.svg)](https://github.com/Powie69/meteor-capes/actions/workflows/build.yml)
 
----
-
-This program downloads every cape on [meteorclient.com](https://meteorclient.com/)
+This program downloads every uploaded cape on [meteorclient.com](https://meteorclient.com/)
 
 This repo also has a script that runs automatically every sunday. The downloaded files ends up in the [releases page](https://github.com/Powie69/meteor-capes/releases). Their tags has the format of `YYYY-MM-DD`
 
