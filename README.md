@@ -11,6 +11,6 @@ This repo also has a script that runs automatically every sunday. The downloaded
 
 ## Usage:
 
-1. download the latest executable in the [releases page](https://github.com/Powie69/meteor-capes/releases)
+1. download the latest executable in the [releases page](https://github.com/Powie69/meteor-capes/releases?q=exe&expanded=true)
 
 2. Run it just like any other `.exe` program 👍
