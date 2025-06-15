@@ -4,7 +4,7 @@
 [![Download Capes](https://github.com/Powie69/meteor-capes/actions/workflows/download.yml/badge.svg)](https://github.com/Powie69/meteor-capes/actions/workflows/download.yml)
 [![Build](https://github.com/Powie69/meteor-capes/actions/workflows/build.yml/badge.svg)](https://github.com/Powie69/meteor-capes/actions/workflows/build.yml)
 
-<br>
+---
 
 This program downloads every cape on [meteorclient.com](https://meteorclient.com/)
 
