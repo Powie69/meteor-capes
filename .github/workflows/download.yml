@@ -30,7 +30,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: meteor-capes
-          path: "./.github/script/Capes → ${{ env.DATE }}"
+          path: "./.github/bin/Capes → ${{ env.DATE }}"
 
       - name: Create and push tag
         env:
@@ -44,7 +44,7 @@ jobs:
           git push origin $TAG
 
       - name: Zip capes folder
-        working-directory: ./.github/script
+        working-directory: ./.github/bin
         run: zip -r "Capes_${{ env.DATE }}.zip" "Capes → ${{ env.DATE }}"
 
       - name: Create GitHub Release with asset
@@ -52,7 +52,7 @@ jobs:
         with:
           tag_name: ${{ env.DATE }}
           name: "Capes → ${{ env.DATE }}"
-          files: "./.github/script/Capes_${{ env.DATE }}.zip"
+          files: "./.github/bin/Capes_${{ env.DATE }}.zip"
           make_latest: "true"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
