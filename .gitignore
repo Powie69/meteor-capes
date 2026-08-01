@@ -7,9 +7,6 @@ capes → */
 *.so
 *.dylib
 
-# Don't ignore pls
-!.github/bin/*.exe
-
 # Test binary, built with `go test -c`
 *.test
 

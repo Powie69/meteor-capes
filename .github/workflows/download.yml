@@ -20,7 +20,7 @@ jobs:
 
       - name: Run script
         working-directory: ./.github/bin
-        run: ./meteor-capes.exe
+        run: ./meteor-capes
 
       - name: Set DATE env var
         shell: bash
