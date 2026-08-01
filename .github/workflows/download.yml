@@ -18,14 +18,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-
       - name: Run script
-        working-directory: ./.github/script
-        run: node .
+        working-directory: ./.github/bin
+        run: ./meteor-capes.exe
 
       - name: Set DATE env var
         shell: bash
